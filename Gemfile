@@ -7,4 +7,5 @@ gem "gitlab", "3.3.0"
 
 group :development, :test do
   gem "sqlite3", "1.3.10"
+  gem "pry"
 end
