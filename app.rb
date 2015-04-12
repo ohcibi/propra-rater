@@ -9,6 +9,10 @@ group_id = g.groups().find do |group|
   group.path == "programmierpraktikum-2015"
 end.id
 
+get "/" do
+  File.read 'public/dist/index.html'
+end
+
 get "/teams" do
   g.group(group_id).projects.select do |project|
     project["name"].start_with? "team"
