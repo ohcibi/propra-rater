@@ -14,7 +14,9 @@ get "/" do
 end
 
 get "/teams" do
-  g.group(group_id).projects.select do |project|
-    project["name"].start_with? "team"
-  end.to_json
+  {
+    teams: g.group(group_id).projects.select do |project|
+      project["name"].start_with? "team"
+    end
+  }.to_json
 end

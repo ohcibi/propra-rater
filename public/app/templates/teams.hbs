@@ -1,0 +1,5 @@
+<ol>
+  {{#each model as |team|}}
+    <li><a href="{{team.web_url}}">{{team.name_with_namespace}}</a></li>
+  {{/each}}
+</ol>
