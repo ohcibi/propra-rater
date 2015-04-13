@@ -1,5 +1,5 @@
 <ol>
   {{#each model as |team|}}
-    <li><a href="{{team.web_url}}">{{team.name_with_namespace}}</a></li>
+    <li>{{link-to team.name_with_namespace "teams.team" team}}</li>
   {{/each}}
 </ol>

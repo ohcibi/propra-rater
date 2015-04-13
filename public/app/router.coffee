@@ -5,6 +5,7 @@ Router = Ember.Router.extend
   location: config.locationType
 
 Router.map ->
-  @route 'teams', path: "/"
+  @route 'teams', path: "/", ->
+    @route 'team', path: "/:namespace.path/:path"
 
 `export default Router`
