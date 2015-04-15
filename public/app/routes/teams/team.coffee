@@ -7,7 +7,7 @@ TeamRoute = Ember.Route.extend
         ko: num
         milestone: milestone
         member: @store.getById "member", id
-      rating.save()
+      rating.save().then (->), (error) => @store.unloadRecord rating
 
   model: (params) ->
     @store.find "team", params.path
