@@ -10,8 +10,8 @@ Member = DS.Model.extend
   name: attr "string"
   username: attr "string"
   state: attr "string"
-  avatarUrl: attr "string"
-  accessLevel: attr "number"
+  avatar_url: attr "string"
+  access_level: attr "number"
 
   ratings: hasMany "rating"
 
