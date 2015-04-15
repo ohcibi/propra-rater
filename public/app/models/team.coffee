@@ -2,6 +2,7 @@
 
 attr = DS.attr
 belongsTo = DS.belongsTo
+hasMany = DS.hasMany
 
 Team = DS.Model.extend
   name: DS.attr "string"
@@ -10,5 +11,6 @@ Team = DS.Model.extend
   web_url: DS.attr "string"
 
   namespace: belongsTo "namespace"
+  members: hasMany "member"
 
 `export default Team`

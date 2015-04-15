@@ -2,6 +2,6 @@
 
 TeamRoute = Ember.Route.extend
   model: (params) ->
-    debugger
+    @store.find "team", params.path
 
 `export default TeamRoute`

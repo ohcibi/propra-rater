@@ -1,0 +1,39 @@
+<header>
+  <h1>{{model.nameWithNamespace}}</h1>
+  <h1>{{model.name_with_namespace}}</h1>
+</header>
+<table class="members">
+
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Korrekt Oidas</th>
+      <th>Bewerten</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    {{#each model.members as |member|}}
+      <tr>
+
+        <td>
+          <img src="{{member.avatarUrl}}" class="avatar">
+          <strong>{{member.name}}</strong>
+        </td>
+
+        <td>{{member.koSum}}</td>
+
+        <td>
+          <label>{{view "select" prompt="Meilenstein" content=milestones value=milestone}}</label>
+          <button>K.O.</button><button>1/2 K.O.</button><button>0</button>
+        </td>
+
+      </tr>
+    {{/each}}
+
+  </tbody>
+
+</table>
+
+{{outlet}}
