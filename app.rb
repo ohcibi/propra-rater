@@ -42,6 +42,7 @@ post "/ratings" do
   payload = JSON.parse body
   rating = Rating.new payload["rating"]
   rating.save
+  { rating: rating }.to_json
 end
 
 def get_members_for git, project_name
