@@ -3,6 +3,9 @@ require 'gitlab'
 require 'sinatra'
 require 'sinatra/activerecord'
 require './config/environments'
+require 'json'
+
+require './app/models/rating'
 
 g = Gitlab.client endpoint: "https://git.hhu.de/api/v3", private_token: ENV["gl_token"]
 group = g.groups().find do |item|
@@ -30,12 +33,15 @@ get "/teams/:team_name" do
   {
     team: team,
     members: members,
-    ratings: [
-      { id: 1, ko: 1, milestone: 1 },
-      { id: 2, ko: 0.5, milestone: 2 },
-      { id: 3, ko: 0, milestone: 3 }
-    ]
+    ratings: Rating.all
   }.to_json
+end
+
+post "/ratings" do
+  body = request.body.read
+  payload = JSON.parse body
+  rating = Rating.new payload["rating"]
+  rating.save
 end
 
 def get_members_for git, project_name
@@ -44,7 +50,7 @@ def get_members_for git, project_name
   end
   git.team_members(project.id).map do |member|
     member = member.to_h
-    member["ratings"] = [1, 2, 3]
+    member["ratings"] = Rating.where(member: member["id"]).pluck :id
     member
   end
 end
