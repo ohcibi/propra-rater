@@ -25,4 +25,14 @@ Member = DS.Model.extend
 
   koSum: sum "kos"
 
+  sanity: (->
+    level = @get("currentMilestone") - @get "koSum"
+    if level < 2
+      "sane"
+    else if level < 4
+      "endangered"
+    else
+      "lamebrain"
+  ).property "currentMilestone", "koSum"
+
 `export default Member`
