@@ -1,1 +1,7 @@
-{{model.username}}
+<ol>
+  {{#each model.ratings as |rating|}}
+    <li>Meilenstein {{rating.milestone}} mit {{rating.ko}} K.O. bewertet</li>
+  {{else}}
+    <li>Noch keine Bewertung vorhanden</li>
+  {{/each}}
+</ol>
