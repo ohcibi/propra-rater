@@ -3,6 +3,7 @@
 attr = DS.attr
 hasMany = DS.hasMany
 
+get = Ember.get
 mapBy = Ember.computed.mapBy
 sum = Ember.computed.sum
 
@@ -14,6 +15,11 @@ Member = DS.Model.extend
   access_level: attr "number"
 
   ratings: hasMany "rating"
+
+  currentMilestone: (->
+    ratings = @get("ratings").map (r) -> get r, "milestone"
+    Math.max 0, Math.max.apply null, ratings
+  ).property "ratings.[]"
 
   kos: mapBy "ratings", "ko"
 
