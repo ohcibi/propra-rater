@@ -1,6 +1,8 @@
 <ol>
   {{#each model.ratings as |rating|}}
-    <li>Meilenstein {{rating.milestone}} mit {{rating.ko}} K.O. bewertet</li>
+    <li>
+      {{member-rating rating=rating}}
+    </li>
   {{else}}
     <li>Noch keine Bewertung vorhanden</li>
   {{/each}}

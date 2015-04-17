@@ -45,6 +45,13 @@ post "/ratings" do
   { rating: rating }.to_json
 end
 
+put "/ratings/:id" do
+  body = request.body.read
+  payload = JSON.parse body
+  { rating: Rating.update(params["id"], payload["rating"]) }.to_json
+end
+
+
 def get_members_for git, project_name
   project = git.projects(per_page: 200).find do |item|
     item.name == project_name

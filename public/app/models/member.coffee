@@ -3,9 +3,8 @@
 attr = DS.attr
 hasMany = DS.hasMany
 
+computed = Ember.computed
 get = Ember.get
-mapBy = Ember.computed.mapBy
-sum = Ember.computed.sum
 
 Member = DS.Model.extend
   name: attr "string"
@@ -21,9 +20,11 @@ Member = DS.Model.extend
     Math.max 0, Math.max.apply null, ratings
   ).property "ratings.[]"
 
-  kos: mapBy "ratings", "ko"
+  kos: (->
+    @get("ratings").map (rating) -> +get rating, "ko"
+  ).property "ratings.@each.ko"
 
-  koSum: sum "kos"
+  koSum: computed.sum "kos"
 
   sanity: (->
     level = @get("currentMilestone") - @get "koSum"
