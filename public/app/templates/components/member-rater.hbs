@@ -2,7 +2,7 @@
   <em>Alle Meilensteine bewertet</em>
 {{else}}
   {{milestone}}. Meilenstein
-  <button {{action "ko" 1}}>K.O.</button>
-  <button {{action "ko" 0.5}}>1/2 K.O.</button>
-  <button {{action "ko" 0}}>0</button>
+  <button class="btn btn-default" {{action "ko" 1}}>K.O.</button>
+  <button class="btn btn-default" {{action "ko" 0.5}}>1/2 K.O.</button>
+  <button class="btn btn-default" {{action "ko" 0}}>0</button>
 {{/if}}

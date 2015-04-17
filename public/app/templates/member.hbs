@@ -1,9 +1,38 @@
-<ol>
-  {{#each model.ratings as |rating|}}
-    <li>
-      {{member-rating rating=rating}}
-    </li>
-  {{else}}
-    <li>Noch keine Bewertung vorhanden</li>
-  {{/each}}
-</ol>
+<div class="row">
+  <header class="col-md-12">
+    <h2>{{model.name}}</h2>
+  </header>
+</div>
+
+<div class="row">
+  <div class="col-md-3 ratings">
+    <table class="table table-striped table-hover table-bordered">
+
+      <thead>
+        <tr>
+          <th>Meilenstein</th>
+          <th>K.O</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {{#each model.ratings as |rating|}}
+          <tr>
+
+            <td class="milestone-col">{{rating.milestone}}</td>
+
+            <td class="rating-col bg-{{rating.sanity}}">
+              {{member-rating name=model.name rating=rating}}
+            </td>
+
+          </tr>
+        {{else}}
+
+          <tr><td colspan="2">Noch keine Bewertung vorhanden</td></tr>
+
+        {{/each}}
+      </tbody>
+
+    </table>
+  </div>
+</div>

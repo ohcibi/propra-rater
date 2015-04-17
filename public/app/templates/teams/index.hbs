@@ -1,5 +1,16 @@
-<ol>
-  {{#each model as |team|}}
-    <li>{{link-to team.name_with_namespace "team" team.namespace.path team.path}}</li>
-  {{/each}}
-</ol>
+<div class="row">
+  <header class="col-md-12">
+    <h2>Bewertungen für {{model.name}}</h2>
+  </header>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <ol>
+      {{#each model as |team|}}
+        <li>
+          {{link-to team.name_with_namespace "team" team.namespace.path team.path}}
+        </li>
+      {{/each}}
+    </ol>
+  </div>
+</div>

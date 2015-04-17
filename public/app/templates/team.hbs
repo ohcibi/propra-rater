@@ -1,39 +1,48 @@
-<header>
-  <h1>{{model.name_with_namespace}}</h1>
-</header>
-<table class="members">
+<div class="row">
+  <header class="col-md-12">
+    <h1>{{model.name_with_namespace}}</h1>
+  </header>
+</div>
 
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Korrekt Oidas</th>
-      <th>Bewerten</th>
-    </tr>
-  </thead>
+<div class="row">
+  <div class="col-md-12">
 
-  <tbody>
+    <table class="members table table-hover table-striped">
 
-    {{#each model.members as |member|}}
-      <tr>
+      <thead>
+        <tr>
+          <th class="user-col">Name</th>
+          <th class="rater-col">Bewerten</th>
+          <th class="ko-col">K.O.</th>
+        </tr>
+      </thead>
 
-        <td>
-          <img src="{{member.avatar_url}}" class="avatar">
-          {{link-to member.name "member" member}}
-        </td>
+      <tbody>
 
-        <td class="{{member.sanity}}">
-          {{member.koSum}}/{{member.currentMilestone}}
-        </td>
+        {{#each model.members as |member|}}
+          <tr>
 
-        <td>
-          {{member-rater member=member action="ko"}}
-        </td>
+            <td class="user-col">
+              <img src="{{member.avatar_url}}" class="avatar">
+              {{link-to member.name "member" member}}
+            </td>
 
-      </tr>
-    {{/each}}
+            <td class="rater-col">
+              {{member-rater member=member action="ko"}}
+            </td>
 
-  </tbody>
+            <td class="{{member.sanity}} ko-col">
+              {{member.koSum}}/{{member.currentMilestone}}
+            </td>
 
-</table>
+          </tr>
+        {{/each}}
+
+      </tbody>
+
+    </table>
+
+  </div>
+</div>
 
 {{outlet}}

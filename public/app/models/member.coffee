@@ -29,11 +29,11 @@ Member = DS.Model.extend
   sanity: (->
     level = @get("currentMilestone") - @get "koSum"
     if level < 2
-      "sane"
+      "success"
     else if level < 4
-      "endangered"
+      "warning"
     else
-      "lamebrain"
+      "danger"
   ).property "currentMilestone", "koSum"
 
 `export default Member`

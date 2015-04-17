@@ -1,6 +1,41 @@
-.sane
-  background: green
-.endangered
-  background: orange
-.lamebrain
-  background: red
+.ember-notify-cn
+  top: 0px
+  bottom: auto
+
+  // use long selector to override bootstrap
+.table > tbody > tr, .table > thead > tr, .table > tfoot > tr
+
+  .user-col a
+    vertical-align: top
+
+  .ko-col
+    text-align: center
+    width: 10%
+
+  .rater-col
+    text-align: right
+
+  .ko-col, .rater-col
+    vertical-align: middle
+
+  th, th.user-col, th.ko-col, th.rater-col
+    text-align: center
+
+.ratings
+
+  $row-height: 50px
+
+  .table > tbody > tr, .table > thead > tr, .table > tfoot > tr
+    td
+      height: $row-height
+      vertical-align: middle
+      text-align: center
+
+      &.milestone-col
+        width: 15%
+        font-weight: bold
+        border-right: 1px solid #dcdedf
+
+  .fa
+    line-height: 20px
+    float: right
