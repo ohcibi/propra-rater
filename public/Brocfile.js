@@ -5,6 +5,10 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 var app = new EmberApp({
   sassOptions: {
     ext: "sass"
+  },
+  autoprefixer: {
+    browsers: "last 2 Chrome versions, last 2 Firefox versions, last 2 Safari versions, last 2 Explorer versions",
+    cascade: false
   }
 });
 
