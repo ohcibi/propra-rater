@@ -54,7 +54,7 @@ end
 
 def get_members_for git, project_name
   project = git.projects(per_page: 200).find do |item|
-    item.name == project_name
+    item.name.downcase == project_name.downcase
   end
   git.team_members(project.id).map do |member|
     member = member.to_h
