@@ -2,9 +2,19 @@
 
 computed = Ember.computed
 
+korrektOida = ->
+  audio = Ember.$("#korrektOida")[0]
+  audio.pause()
+  audio.currentTime = 0
+  audio.play()
+
 MemberRaterComponent = Ember.Component.extend
   actions:
-    ko: (num) -> @sendAction "action", num, @get("member.id"), @get "milestone"
+    ko: (num) ->
+      if num == 1
+        korrektOida()
+
+      @sendAction "action", num, @get("member.id"), @get "milestone"
 
   milestone: (->
     1 + @get "member.currentMilestone"
