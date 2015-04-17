@@ -1,16 +1,16 @@
 <div class="row">
-  <header class="col-md-12">
-    <h2>Bewertungen für {{model.name}}</h2>
+  <header class="col-md-12 team-select">
+    <h2>Bewertungen für {{model.name}} team{{input value=teamFilter}}</h2>
+
+    {{#if teamFilter}}
+      <ul class="dropdown-menu results">
+        {{#each filteredTeams as |team|}}
+          <li>
+            {{link-to team.name_with_namespace "team" team.namespace.path team.path}}
+          </li>
+        {{/each}}
+      </ul>
+    {{/if}}
+
   </header>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <ol>
-      {{#each model as |team|}}
-        <li>
-          {{link-to team.name_with_namespace "team" team.namespace.path team.path}}
-        </li>
-      {{/each}}
-    </ol>
-  </div>
 </div>
