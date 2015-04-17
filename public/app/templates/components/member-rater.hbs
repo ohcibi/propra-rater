@@ -1,8 +1,8 @@
 {{#if finish}}
   <em>Alle Meilensteine bewertet</em>
 {{else}}
-  {{milestone}}. Meilenstein
-  <button class="btn btn-default" {{action "ko" 1}}>K.O.</button>
-  <button class="btn btn-default" {{action "ko" 0.5}}>1/2 K.O.</button>
-  <button class="btn btn-default" {{action "ko" 0}}>0</button>
+  {{milestone}}. Meilenstein:
+  <button class="btn btn-success" {{action "ko" 1}}>{{fa-icon "smile-o"}}</button>
+  <button class="btn btn-warning" {{action "ko" 0.5}}>{{fa-icon "meh-o"}}</button>
+  <button class="btn btn-danger" {{action "ko" 0}}>{{fa-icon "frown-o"}}</button>
 {{/if}}
