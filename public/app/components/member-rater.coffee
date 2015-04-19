@@ -3,10 +3,11 @@
 computed = Ember.computed
 
 korrektOida = ->
-  audio = Ember.$("#korrektOida")[0]
-  audio.pause()
-  audio.currentTime = 0
-  audio.play()
+  try
+    audio = Ember.$("#korrektOida")[0]
+    audio.pause()
+    audio.currentTime = 0
+    audio.play()
 
 MemberRaterComponent = Ember.Component.extend
   actions:
