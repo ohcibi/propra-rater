@@ -11,12 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150412124812) do
+ActiveRecord::Schema.define(version: 20150419083537) do
 
   create_table "ratings", force: :cascade do |t|
     t.string "member"
     t.string "milestone"
     t.string "ko"
+    t.string "comment"
   end
 
   add_index "ratings", ["member", "milestone"], name: "index_ratings_on_member_and_milestone", unique: true
