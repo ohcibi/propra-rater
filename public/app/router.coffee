@@ -7,6 +7,7 @@ Router = Ember.Router.extend
 Router.map ->
   @resource "teams", path: "/", ->
     @resource "team", path: "/:namespace.path/:path", ->
-      @resource "member", path: "/:username"
+      @resource "member", path: "/:username", ->
+        @resource "rating", path: "/:milestone"
 
 `export default Router`

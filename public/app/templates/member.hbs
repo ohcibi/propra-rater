@@ -20,7 +20,7 @@
         {{#each model.ratings as |rating|}}
           <tr>
 
-            <td class="milestone-col">{{rating.milestone}}</td>
+            <td class="milestone-col">{{link-to rating.milestone "rating" rating}}</td>
 
             <td class="rating-col text-{{rating.sanity}} bg-{{rating.sanity}}">
               {{member-rating name=model.name rating=rating}}
@@ -37,7 +37,10 @@
     </table>
   </div>
 
-  <div class="col-md-9">
+  <div class="col-md-5">
+    {{outlet}}
+  </div>
+  <div class="col-md-4">
     <img src="http://media.giphy.com/media/cON4OTOjICjHq/giphy.gif">
   </div>
 
