@@ -9,3 +9,7 @@ group :development, :test do
   gem "sqlite3", "1.3.10"
   gem "pry"
 end
+
+group :production do
+  gem "mysql2", "0.3.18"
+end
