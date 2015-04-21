@@ -1,3 +1,10 @@
+production:
+  host: localhost
+  username: rater
+  password: xxx
+  database: rater
+  encoding: utf8
+
 development:
   adapter: sqlite3
   database: db/development.sqlite3

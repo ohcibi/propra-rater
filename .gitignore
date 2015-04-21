@@ -1,3 +1,5 @@
 .bundle/
 vendor/
 db/*.sqlite3*
+
+config/database.yml
