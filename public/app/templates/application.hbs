@@ -1,13 +1,20 @@
 {{ember-notify messageStyle="bootstrap"}}
 
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      {{link-to "ProPra Rater" "teams" classNames="navbar-brand"}}
+{{#if session.isAuthenticated}}
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        {{link-to "ProPra Rater" "teams" classNames="navbar-brand"}}
+      </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <button {{action "logout"}} type="button" class="btn btn-primary navbar-btn">{{fa-icon "sign-out"}} Abmelden</button>
+          </li>
+        </ul>
     </div>
-  </div>
-</nav>
+  </nav>
+{{/if}}
 
-<div class="container">
+<div {{bind-attr class="session.isAuthenticated:container:containerFluid"}}>
   {{outlet}}
 </div>
