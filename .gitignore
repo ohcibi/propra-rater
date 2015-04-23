@@ -6,3 +6,5 @@ db/schema.rb
 config/database.yml
 
 funkpw
+
+log/
