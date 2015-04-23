@@ -5,18 +5,13 @@ require 'sinatra/json'
 require 'sinatra/activerecord'
 require './config/environments'
 
+require './app/helpers'
+
 require './app/models/rating'
 require './app/models/user'
 require './lib/git'
-require './lib/ldap'
 
 git = Git.new "https://git.hhu.de/api/v3", ENV["gl_token"]
-
-raise "Please export $funkident with the functional ident" unless ENV["funkident"]
-raise "Please export $funkpw with the functional password" unless ENV["funkpw"]
-raise "Please export the ldap host as $ldaphost" unless ENV["ldaphost"]
-
-ldap = Ldap.new ENV["funkident"], ENV["funkpw"], ENV["ldaphost"]
 
 get "/teams" do
   {
@@ -54,10 +49,8 @@ post "/sessions" do
   payload = JSON.parse body
   session = payload["session"]
 
-  if ldap.authenticate? session["ident"], session["password"]
-    user = User.find_or_create_by ident: session["ident"]
-    user.regenerate_token!
-    json session: { token: user.token }
+  if authenticate? session["ident"], session["password"]
+    json session: { token: authenticate!(session["ident"]) }
   else
     status 401
     json error: "Wrong username or password"
