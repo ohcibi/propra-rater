@@ -14,4 +14,5 @@ end
 
 group :production do
   gem "mysql2", "0.3.18"
+  gem "puma", "2.11.2"
 end
