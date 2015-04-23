@@ -1,6 +1,21 @@
 require './lib/ldap'
 
 helpers do
+  def protect!
+    return if authorized?
+    halt 401, "Not authorized\n"
+  end
+
+  def authorized?
+    user = User.find_by token: request.env["HTTP_X_PROPRA_KEY"]
+    if not user.nil? and user.token_is_valid?
+      user.update_token_expiration!
+      true
+    else
+      false
+    end
+  end
+
   def authenticate? ident, password
     raise "Please export $funkident with the functional ident" unless ENV["funkident"]
     raise "Please export $funkpw with the functional password" unless ENV["funkpw"]

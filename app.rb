@@ -14,10 +14,14 @@ require './lib/git'
 git = Git.new "https://git.hhu.de/api/v3", ENV["gl_token"]
 
 get "/teams" do
+  protect!
+
   json teams: git.teams
 end
 
 get "/teams/:team_name" do
+  protect!
+
   team = git.get_team params["team_name"]
   members = git.get_members_for params["team_name"]
   team["members"] = members.map { |m| m["id"] }
@@ -26,6 +30,8 @@ get "/teams/:team_name" do
 end
 
 post "/ratings" do
+  protect!
+
   body = request.body.read
   payload = JSON.parse body
   rating = Rating.new payload["rating"]
@@ -34,6 +40,8 @@ post "/ratings" do
 end
 
 put "/ratings/:id" do
+  protect!
+
   body = request.body.read
   payload = JSON.parse body
   json rating: Rating.update(params["id"], payload["rating"])

@@ -27,4 +27,8 @@ class User < ActiveRecord::Base
   def self.generate_unique_secure_token
     SecureToken.base58 48
   end
+
+  def token_is_valid?
+    DateTime.now < token_expires_at
+  end
 end
