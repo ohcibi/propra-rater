@@ -52,11 +52,33 @@ post "/sessions" do
   payload = JSON.parse body
   session = payload["session"]
 
-  if authenticate? session["ident"], session["password"]
-    json session: { token: authenticate!(session["ident"]) }
-  else
-    status 401
-    json error: "Wrong username or password"
+  begin
+    if authenticate? session["ident"], session["password"]
+      json session: { token: authenticate!(session["ident"]) }
+    else
+      error401 message: "Fehler bei der Anmeldung"
+    end
+  rescue UserNotFoundException
+    error401(
+      message: "Fehler bei der Anmeldung",
+      errors: {
+        ident: "Der Benutzer '#{session["ident"]}' existiert nicht."
+      }
+    )
+  rescue UserNoPropraTutorException
+    error401(
+      message: "Fehler bei der Anmeldung",
+      errors: {
+        ident: "Der Benutzer '#{session["ident"]}' ist kein ProPra Tutor."
+      }
+    )
+  rescue WrongPasswordException
+    error401(
+      message: "Fehler bei der Anmeldung",
+      errors: {
+        password: "Das Passwort ist falsch."
+      }
+    )
   end
 end
 

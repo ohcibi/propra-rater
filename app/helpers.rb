@@ -31,4 +31,9 @@ helpers do
     user.regenerate_token!
     user.token
   end
+
+  def error401 response
+    status 401
+    json response
+  end
 end
