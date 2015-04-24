@@ -3,24 +3,57 @@
 </header>
 
 <div class="text-center login-form">
-  <form {{action 'authenticate' on='submit'}}>
-    <div class="form-group">
-      <div class="input-group">
-        <label for="loginInputIdent" class="input-group-addon">{{fa-icon "user"}}</label>
-        {{input value=ident placeholder="Uni-Kennung" class="form-control" elementId="loginInputIdent"}}
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="input-group">
-        <label for="loginInputPassword" class="input-group-addon">{{fa-icon "key"}}</label>
-        {{input value=password placeholder="Passwort" class="form-control" type="password" elementId="loginInputPassword"}}
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Anmelden{{fa-icon "sign-in"}}</button>
-  </form>
+
   {{#if errorMessage}}
-    <div class="alert alert-danger">
-      <strong>Anmeldung fehlgeschlagen:</strong> {{errorMessage}}
+    <div class="alert alert-{{validationState}}" role="alert">
+      <strong>{{errorMessage}}</strong>
     </div>
   {{/if}}
+
+  <form {{action "authenticate" on="submit"}}>
+
+    <div class="form-group {{identValidationState}}">
+
+
+      <div class="input-group">
+        <label for="loginInputIdent" class="input-group-addon">
+          {{fa-icon "user"}}
+        </label>
+
+        {{input value=ident placeholder="Uni-Kennung" class="form-control" elementId="loginInputIdent"}}
+
+        {{input-tooltip message=errors.ident.message position="bottom"}}
+
+      </div>
+
+      {{#if identValidationState}}
+        {{fa-icon identValidationIcon classNames="form-control-feedback"}}
+      {{/if}}
+
+    </div>
+
+    <div class="form-group {{passwordValidationState}}">
+
+      <div class="input-group">
+
+        <label for="loginInputPassword" class="input-group-addon">
+          {{fa-icon "key"}}
+        </label>
+
+        {{input value=password placeholder="Passwort" class="form-control" type="password" elementId="loginInputPassword"}}
+
+        {{input-tooltip message=errors.password.message position="bottom"}}
+
+      </div>
+
+      {{#if passwordValidationState}}
+        {{fa-icon passwordValidationIcon classNames="form-control-feedback"}}
+      {{/if}}
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Anmelden{{fa-icon "sign-in"}}</button>
+
+  </form>
+
 </div>

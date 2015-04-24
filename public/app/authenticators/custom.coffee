@@ -32,8 +32,7 @@ CustomAuthenticator = Base.extend
           @set "token", response.session.token
           resolve token: response.session.token
       ), (xhr, status, error) ->
-        response = JSON.parse xhr.responseText
-        run -> reject response.error
+        run -> reject JSON.parse xhr.responseText
 
   invalidate: ->
     new Promise (resolve, reject) =>
