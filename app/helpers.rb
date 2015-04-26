@@ -27,7 +27,7 @@ helpers do
   end
 
   def authenticate! ident
-    user = User.find_or_create_by ident: session["ident"]
+    user = User.find_or_create_by ident: ident
     user.regenerate_token!
     user.token
   end
