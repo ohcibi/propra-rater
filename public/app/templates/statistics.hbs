@@ -1,0 +1,21 @@
+<header class="page-header">
+  <h1>Statistiken</h1>
+</header>
+
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Meilenstein</th>
+      <th>K.O.</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {{#each model as |rating|}}
+      <tr>
+        <td>{{rating.milestone}}</td>
+        <td>{{rating.ko}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
