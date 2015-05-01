@@ -16,17 +16,15 @@ git = Git.new "https://git.hhu.de/api/v3", ENV["gl_token"]
 get "/teams" do
   protect!
 
-  json teams: git.teams
-end
+  unless params["path"].nil?
+    team = git.get_team params["path"]
+    members = git.get_members_for params["path"]
+    team["members"] = members.map { |m| m["id"] }
 
-get "/teams/:team_name" do
-  protect!
-
-  team = git.get_team params["team_name"]
-  members = git.get_members_for params["team_name"]
-  team["members"] = members.map { |m| m["id"] }
-
-  json team: team, members: members, ratings: Rating.all
+    json teams: [team], members: members, ratings: Rating.all
+  else
+    json teams: git.teams
+  end
 end
 
 get "/ratings" do

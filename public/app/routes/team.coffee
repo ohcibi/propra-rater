@@ -22,6 +22,7 @@ TeamRoute = Ember.Route.extend
         @store.unloadRecord rating
 
   model: (params) ->
-    @store.find "team", params.path
+    @store.find("team", path: params.path).then (teams) ->
+      teams.get("firstObject")
 
 `export default TeamRoute`
