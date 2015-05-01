@@ -2,20 +2,30 @@
   <h1>Statistiken</h1>
 </header>
 
-<table class="table table-bordered table-hover">
-  <thead>
-    <tr>
-      <th>Meilenstein</th>
-      <th>K.O.</th>
-    </tr>
-  </thead>
+{{bar-chart data=barChartData}}
 
-  <tbody>
-    {{#each model as |rating|}}
-      <tr>
-        <td>{{rating.milestone}}</td>
-        <td>{{rating.ko}}</td>
-      </tr>
-    {{/each}}
-  </tbody>
-</table>
+<div class="row">
+  <div class="col-md-6">
+    <table class="table table-bordered table-hover table-striped statistics">
+      <thead>
+        <tr>
+          <th>Meilenstein</th>
+          <th>1 K.O.</th>
+          <th>½ K.O.</th>
+          <th>0 K.O.</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {{#each barChartData as |milestone|}}
+          <tr>
+            <td class="milestone-col">{{milestone.number}}</td>
+            <td>{{milestone.full}}</td>
+            <td>{{milestone.half}}</td>
+            <td>{{milestone.none}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
