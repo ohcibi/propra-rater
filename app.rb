@@ -29,6 +29,12 @@ get "/teams/:team_name" do
   json team: team, members: members, ratings: Rating.all
 end
 
+get "/ratings" do
+  protect!
+
+  json ratings: Rating.all
+end
+
 post "/ratings" do
   protect!
 
