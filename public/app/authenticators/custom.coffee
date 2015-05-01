@@ -3,6 +3,8 @@
 
 get = Ember.get
 
+isEmpty = Ember.isEmpty
+
 Promise = Ember.RSVP.Promise
 
 run = Ember.run
