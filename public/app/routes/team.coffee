@@ -21,6 +21,20 @@ TeamRoute = Ember.Route.extend
         )
         @store.unloadRecord rating
 
+    revoke: (id) ->
+      member = @store.getById "member", id
+      rating = get member, "ratings.lastObject"
+      rating.destroyRecord().then (->
+        Notify.success(
+          "Letzte Bewertung für #{get member, "name"} zurückgenommen",
+          radius: true
+        )
+      ), (error) ->
+        Notify.warning(
+          "Fehler beim Zurücknehmen der Bewertung für #{get member, "name"}",
+          radius: true
+        )
+
   model: (params) ->
     @store.find("team", path: params.path).then (teams) ->
       teams.get("firstObject")

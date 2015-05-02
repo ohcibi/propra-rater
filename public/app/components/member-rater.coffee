@@ -17,11 +17,15 @@ MemberRaterComponent = Ember.Component.extend
 
       @sendAction "action", num, @get("member.id"), @get "milestone"
 
+    revoke: -> @sendAction "onRevoke", @get "member.id"
+
   milestone: (->
     1 + @get "member.currentMilestone"
   ).property "member.currentMilestone"
 
   finish: computed.gt "milestone", 12
+
+  disableRevoke: computed.lt "member.ratings.length", 1
 
   tagName: "form"
 

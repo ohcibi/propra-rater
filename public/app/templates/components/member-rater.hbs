@@ -6,3 +6,11 @@
   <button class="btn btn-warning" {{action "ko" 0.5}}>{{fa-icon "meh-o"}}</button>
   <button class="btn btn-danger" {{action "ko" 0}}>{{fa-icon "frown-o"}}</button>
 {{/if}}
+
+
+<button
+  class="btn btn-revoke"
+  {{bind-attr disabled=disableRevoke}} {{action "revoke"}}>
+
+  {{fa-icon "undo"}}
+</button>
