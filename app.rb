@@ -51,6 +51,15 @@ put "/ratings/:id" do
   json rating: Rating.update(params["id"], payload["rating"])
 end
 
+delete "/ratings/:id" do
+  protect!
+
+  rating = Rating.find params["id"]
+  rating.destroy!
+
+  json rating: rating
+end
+
 post "/sessions" do
   body = request.body.read
   payload = JSON.parse body
