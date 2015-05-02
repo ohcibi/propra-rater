@@ -29,4 +29,8 @@ MemberRaterComponent = Ember.Component.extend
 
   tagName: "form"
 
+  enableTooltips: (-> @$("[title]").tooltip()).on "didInsertElement"
+
+  disableTooltips: (-> @$("[title]").tooltip "destroy" ).on "willDestroyElement"
+
 `export default MemberRaterComponent`

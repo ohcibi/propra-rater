@@ -1,15 +1,16 @@
-{{#if finish}}
-  <em>Alle Meilensteine bewertet</em>
-{{else}}
+{{#unless finish}}
   {{milestone}}. Meilenstein:
-  <button class="btn btn-success" {{action "ko" 1}}>{{fa-icon "smile-o"}}</button>
-  <button class="btn btn-warning" {{action "ko" 0.5}}>{{fa-icon "meh-o"}}</button>
-  <button class="btn btn-danger" {{action "ko" 0}}>{{fa-icon "frown-o"}}</button>
-{{/if}}
+{{/unless}}
+
+<button class="btn btn-success" data-toggle="tooltip" title="1 K.O." {{bind-attr disabled=finish}} {{action "ko"   1}}>{{fa-icon "smile-o"}}</button>
+<button class="btn btn-warning" data-toggle="tooltip" title="½ K.O." {{bind-attr disabled=finish}} {{action "ko" 0.5}}>{{fa-icon   "meh-o"}}</button>
+<button class="btn btn-danger"  data-toggle="tooltip" title="0 K.O." {{bind-attr disabled=finish}} {{action "ko"   0}}>{{fa-icon "frown-o"}}</button>
 
 
 <button
   class="btn btn-revoke"
+  data-toggle="tooltip"
+  title="Letzte Bewertung zurücknehmen"
   {{bind-attr disabled=disableRevoke}} {{action "revoke"}}>
 
   {{fa-icon "undo"}}
