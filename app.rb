@@ -21,16 +21,16 @@ get "/teams" do
     members = git.get_members_for params["path"]
     team["members"] = members.map { |m| m["id"] }
 
-    json teams: [team], members: members, ratings: Rating.all
+    gzip json teams: [team], members: members, ratings: Rating.all
   else
-    json teams: git.teams
+    gzip json teams: git.teams
   end
 end
 
 get "/ratings" do
   protect!
 
-  json ratings: Rating.all
+  gzip json ratings: Rating.all
 end
 
 post "/ratings" do
@@ -104,5 +104,5 @@ delete "/sessions" do
 end
 
 get "/*" do
-  File.read 'public/dist/index.html'
+  gzip File.read 'public/dist/index.html'
 end

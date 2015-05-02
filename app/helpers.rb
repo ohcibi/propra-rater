@@ -36,4 +36,16 @@ helpers do
     status 401
     json response
   end
+
+  def gzip content
+    headers["Content-Encoding"] = "gzip"
+    StringIO.new.tap do |io|
+      gz = Zlib::GzipWriter.new(io)
+      begin
+        gz.write content
+      ensure
+        gz.close
+      end
+    end.string
+  end
 end
