@@ -16,8 +16,8 @@ Member = DS.Model.extend
   ratings: hasMany "rating"
 
   currentMilestone: (->
-    ratings = @get("ratings").map (r) -> get r, "milestone"
-    Math.max 0, Math.max.apply null, ratings
+    milestones = @get("ratings").map (r) -> get r, "milestone"
+    Math.max 0, Math.max.apply null, milestones
   ).property "ratings.[]"
 
   kos: (->
