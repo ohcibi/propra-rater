@@ -103,6 +103,46 @@ delete "/sessions" do
   user.update! token_expires_at: DateTime.now
 end
 
+get "/statistics" do
+  ratings = Rating.
+    select(:id, :milestone, :member, :ko).
+    group(:member).group(:milestone).
+    group_by { |rating| rating.member }.
+    values.as_json
+
+  kosums = ratings.map do |member_ratings|
+    member_ratings.map do |rating|
+
+      otherkos = member_ratings.select do |r|
+        r["milestone"] < rating["milestone"]
+      end.map { |r| r["ko"] }.reduce(:+)
+
+      { milestone: rating["milestone"], kosum: rating["ko"] + (otherkos or 0) }
+    end
+  end
+
+  good = [0]*12
+  let4 = [0]*12
+  get5 = [0]*12
+
+  kosums.each do |sums|
+    sums.each do |sum|
+      if (sum[:milestone] - sum[:kosum]) < 2
+        good[sum[:milestone] - 1] += 1
+      elsif (sum[:milestone] - sum[:kosum]) < 4
+        let4[sum[:milestone] - 1] += 1
+      else
+        get5[sum[:milestone] - 1] += 1
+      end
+    end
+  end
+
+  json({
+    active: {good: good, let4: let4, get5: get5 },
+    ratings: Rating.all
+  })
+end
+
 get "/*" do
   gzip File.read 'public/dist/index.html'
 end

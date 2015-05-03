@@ -12,6 +12,6 @@ Router.map ->
       @resource "member", path: "/:username", ->
         @resource "rating", path: "/:milestone"
 
-  @resource "statistics"
+  @resource "statistics", path: "/statistiken"
 
 `export default Router`

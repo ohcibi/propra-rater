@@ -6,7 +6,7 @@ StatisticsController = Ember.Controller.extend
   barChartData: (->
     data = {}
 
-    @get("model").forEach (rating) ->
+    @get("model.ratings").forEach (rating) ->
       milestone = get rating, "milestone"
       msRatings = data[milestone] ?= number: milestone
 
@@ -20,6 +20,6 @@ StatisticsController = Ember.Controller.extend
 
     milestones = (data[milestone] for milestone of data)
     milestones.sortBy "number"
-  ).property "model.@each.ko", "model.@each.milestone"
+  ).property "model.ratings.@each.ko", "model.ratings.@each.milestone"
 
 `export default StatisticsController`

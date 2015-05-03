@@ -3,6 +3,6 @@
   'simple-auth/mixins/authenticated-route-mixin'`
 
 StatisticsRoute = Ember.Route.extend AuthenticatedRouteMixin,
-  model: -> @store.find "rating"
+  model: -> Ember.$.getJSON "/statistics"
 
 `export default StatisticsRoute`
