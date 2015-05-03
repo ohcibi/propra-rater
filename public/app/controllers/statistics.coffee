@@ -1,5 +1,7 @@
 `import Ember from 'ember'`
 
+computed = Ember.computed
+
 get = Ember.get
 
 StatisticsController = Ember.Controller.extend
@@ -21,5 +23,7 @@ StatisticsController = Ember.Controller.extend
     milestones = (data[milestone] for milestone of data)
     milestones.sortBy "number"
   ).property "model.ratings.@each.ko", "model.ratings.@each.milestone"
+
+  lineChartData: computed.reads "model.active"
 
 `export default StatisticsController`
