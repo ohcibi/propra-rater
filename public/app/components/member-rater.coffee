@@ -33,4 +33,5 @@ MemberRaterComponent = Ember.Component.extend
 
   disableTooltips: (-> @$("[title]").tooltip "destroy" ).on "willDestroyElement"
 
+
 `export default MemberRaterComponent`

@@ -6,6 +6,16 @@
 <button class="btn btn-warning" data-toggle="tooltip" title="½ K.O." {{bind-attr disabled=finish}} {{action "ko" 0.5}}>{{fa-icon   "meh-o"}}</button>
 <button class="btn btn-danger"  data-toggle="tooltip" title="0 K.O." {{bind-attr disabled=finish}} {{action "ko"   0}}>{{fa-icon "frown-o"}}</button>
 
+<button
+  class="btn btn-fail"
+  data-toggle="tooltip"
+  title="Durchfall"
+  {{bind-attr disabled=failed}}
+  {{action "ko" -1}}>
+
+  <i class="icon-skull"></i>
+
+</button>
 
 <button
   class="btn btn-revoke"

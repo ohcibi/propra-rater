@@ -18,6 +18,12 @@ app.import("bower_components/bootstrap/js/tooltip.js");
 
 app.import("bower_components/Chart.js/Chart.js");
 
+app.import("vendor/skullfont/styles.css");
+app.import("vendor/skullfont/fonts/skullfont.eot", { destDir: "assets/fonts" });
+app.import("vendor/skullfont/fonts/skullfont.svg", { destDir: "assets/fonts" });
+app.import("vendor/skullfont/fonts/skullfont.ttf", { destDir: "assets/fonts" });
+app.import("vendor/skullfont/fonts/skullfont.woff", { destDir: "assets/fonts" });
+
 // Use `app.import` to add additional libraries to the generated
 // output files.
 //
