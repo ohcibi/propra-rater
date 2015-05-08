@@ -9,11 +9,18 @@ korrektOida = ->
     audio.currentTime = 0
     audio.play()
 
+fail = ->
+  try
+    audio = new Audio "fail.ogg"
+    audio.play()
+
 MemberRaterComponent = Ember.Component.extend
   actions:
     ko: (num) ->
       if num == 1
         korrektOida()
+      else if num == -1
+        fail()
 
       @sendAction "action", num, @get("member.id"), @get "milestone"
 
