@@ -1,0 +1,25 @@
+<form class="member-form" {{action "save" on="submit"}}>
+
+  <div {{bind-attr class=":form-group error:has-error"}}>
+    <label for="pretestKoInput">Eingangstest</label>
+
+    <div class="input-group">
+      <div class="input-group-addon">{{fa-icon "file-text-o"}}</div>
+
+      {{input
+        elementId="pretestKoInput"
+        type="number"
+        min=0 max=1 step=0.5
+        value=model.ko
+        classNames="form-control"}}
+
+    </div>
+
+    <div {{bind-attr class="error:visible :help-block :with-errors"}}>Bewertung fehlt</div>
+  </div>
+
+  <button class="btn btn-primary" type="submit">
+    {{fa-icon "floppy-o"}} Speichern
+  </button>
+
+</form>

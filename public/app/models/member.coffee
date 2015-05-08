@@ -2,6 +2,7 @@
 
 attr = DS.attr
 hasMany = DS.hasMany
+belongsTo = DS.belongsTo
 
 computed = Ember.computed
 get = Ember.get
@@ -14,6 +15,8 @@ Member = DS.Model.extend
   access_level: attr "number"
 
   ratings: hasMany "rating"
+
+  pretest: belongsTo "pretest"
 
   currentMilestone: (->
     milestones = @get("ratings").map (r) -> get r, "milestone"
