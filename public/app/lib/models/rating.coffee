@@ -5,7 +5,6 @@ belongsTo = DS.belongsTo
 
 Rating = DS.Model.extend
   ko: attr "number"
-  comment: attr "string"
 
   member: belongsTo "member"
 

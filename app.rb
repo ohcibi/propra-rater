@@ -8,6 +8,7 @@ require './config/environments'
 require './app/helpers'
 
 require './app/models/rating'
+require './app/models/pretest'
 require './app/models/user'
 require './lib/git'
 
@@ -52,6 +53,16 @@ put "/ratings/:id" do
   body = request.body.read
   payload = JSON.parse body
   json rating: Rating.update(params["id"], payload["rating"])
+end
+
+post "/pretests" do
+  protect!
+
+  body = request.body.read
+  payload = JSON.parse body
+  pretest = Pretest.new payload["pretest"]
+  pretest.save
+  json pretest: pretest
 end
 
 delete "/ratings/:id" do

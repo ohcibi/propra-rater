@@ -6,4 +6,6 @@ attr = DS.attr
 Rating = BaseRating.extend
   milestone: attr "number"
 
+  comment: attr "string"
+
 `export default Rating`
