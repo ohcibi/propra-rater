@@ -23,7 +23,10 @@ get "/teams" do
 
     gzip json teams: [team], members: members, ratings: Rating.all
   else
-    gzip json teams: git.teams
+    teams = git.teams.sort_by do |team|
+      team["path"].gsub(/^team/, "").to_i 16
+    end
+    gzip json teams: teams
   end
 end
 
