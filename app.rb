@@ -19,10 +19,16 @@ get "/teams" do
 
   unless params["path"].nil?
     team = git.get_team params["path"]
-    members = git.get_members_for params["path"]
+
+    members = git.get_members_for(params["path"]).map do |member|
+      pretest = Pretest.find_by member: member["id"]
+      member["pretest"] = pretest.id unless pretest.nil?
+      member
+    end
+
     team["members"] = members.map { |m| m["id"] }
 
-    gzip json teams: [team], members: members, ratings: Rating.all
+    gzip json teams: [team], members: members, ratings: Rating.all, pretests: Pretest.all
   else
     teams = git.teams.sort_by do |team|
       team["path"].gsub(/^team/, "").to_i 16
@@ -63,6 +69,14 @@ post "/pretests" do
   pretest = Pretest.new payload["pretest"]
   pretest.save
   json pretest: pretest
+end
+
+put "/pretests/:id" do
+  protect!
+
+  body = request.body.read
+  payload = JSON.parse body
+  json pretest: Pretest.update(params["id"], payload["pretest"])
 end
 
 delete "/ratings/:id" do

@@ -36,6 +36,9 @@
                 <i class="icon-skull fa-2x"></i>
               {{else}}
                 {{member.koSum}}/{{member.currentMilestone}}
+                {{#if member.hasPretest}}
+                  + {{member.pretest.ko}}
+                {{/if}}
               {{/if}}
             </td>
 

@@ -27,6 +27,10 @@ Member = DS.Model.extend
     @get("kos").any (ko) -> ko == -1
   ).property "kos"
 
+  hasPretest: (->
+    @get("pretest.ko")?
+  ).property "pretest.ko"
+
   kos: (->
     @get("ratings").map (rating) ->
       rating = +get rating, "ko"
