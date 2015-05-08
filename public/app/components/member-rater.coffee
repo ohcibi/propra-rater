@@ -1,26 +1,15 @@
 `import Ember from 'ember'`
+`import playAudio from '../lib/play-audio'`
 
 computed = Ember.computed
-
-korrektOida = ->
-  try
-    audio = Ember.$("#korrektOida")[0]
-    audio.pause()
-    audio.currentTime = 0
-    audio.play()
-
-fail = ->
-  try
-    audio = new Audio "fail.ogg"
-    audio.play()
 
 MemberRaterComponent = Ember.Component.extend
   actions:
     ko: (num) ->
       if num == 1
-        korrektOida()
+        playAudio "korrekt-oida.ogg"
       else if num == -1
-        fail()
+        playAudio "fail.ogg"
 
       @sendAction "action", num, @get("member.id"), @get "milestone"
 
