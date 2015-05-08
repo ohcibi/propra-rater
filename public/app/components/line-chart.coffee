@@ -43,6 +43,16 @@ LineChartComponent = Ember.Component.extend
             pointHighlightStroke: "rgba(169, 68, 66, 1)",
             data: @get "data.get5"
         }
+        {
+          label: "Durchfall"
+          fillColor: "rgba(0, 0, 0, 0.3)"
+          strokeColor: "rgba(0, 0, 0, 0.8)"
+          pointColor: "rgba(0, 0, 0, 0.8)"
+          pointStrokeColor: "#fff"
+          pointHighlightFill: "#fff"
+          pointHighlightStroke: "rgba(50, 50, 50, 0.8)"
+          data: @get "data.fail"
+        }
     ]
   ).property "data.good", "data.let4", "data.get5"
 

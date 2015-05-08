@@ -23,20 +23,32 @@ Member = DS.Model.extend
     Math.max 0, Math.max.apply null, milestones
   ).property "ratings.[]"
 
+  failed: (->
+    @get("kos").any (ko) -> ko == -1
+  ).property "kos"
+
   kos: (->
-    @get("ratings").map (rating) -> +get rating, "ko"
+    @get("ratings").map (rating) ->
+      rating = +get rating, "ko"
   ).property "ratings.@each.ko"
 
-  koSum: computed.sum "kos"
+  koSum: computed.sum "unfailedKos"
 
   sanity: (->
-    level = @get("currentMilestone") - @get "koSum"
-    if level < 2
-      "success"
-    else if level < 4
-      "warning"
+    if @get "failed"
+      "failed"
     else
-      "danger"
-  ).property "currentMilestone", "koSum"
+      level = @get("currentMilestone") - @get "koSum"
+      if level < 2
+        "success"
+      else if level < 4
+        "warning"
+      else
+        "danger"
+  ).property "currentMilestone", "koSum", "failed"
+
+  unfailedKos: (->
+    @get("kos").filter (ko) -> ko in [0, .5, 1]
+  ).property "kos"
 
 `export default Member`

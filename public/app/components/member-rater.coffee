@@ -21,6 +21,8 @@ MemberRaterComponent = Ember.Component.extend
 
   finish: computed.gt "milestone", 12
 
+  failedOrFinished: computed.or "finish", "member.failed"
+
   disableRevoke: computed.lt "member.ratings.length", 1
 
   tagName: "form"

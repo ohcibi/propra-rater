@@ -31,8 +31,12 @@
               {{member-rater member=member action="ko" onRevoke="revoke"}}
             </td>
 
-            <td class="{{member.sanity}} text-{{member.sanity}} ko-col">
-              {{member.koSum}}/{{member.currentMilestone}}
+            <td class="bg-{{member.sanity}} text-{{member.sanity}} ko-col">
+              {{#if member.failed}}
+                <i class="icon-skull fa-2x"></i>
+              {{else}}
+                {{member.koSum}}/{{member.currentMilestone}}
+              {{/if}}
             </td>
 
           </tr>

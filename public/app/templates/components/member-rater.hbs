@@ -1,16 +1,23 @@
-{{#unless finish}}
+{{#unless failedOrFinished}}
   {{milestone}}. Meilenstein:
 {{/unless}}
+{{#if member.failed}}
+  <i class="icon-skull"></i> Durchgefallen <i class="icon-skull"></i>
+{{else}}
+  {{#if finish}}
+    <em>Beendet</em>
+  {{/if}}
+{{/if}}
 
-<button class="btn btn-success" data-toggle="tooltip" title="1 K.O." {{bind-attr disabled=finish}} {{action "ko"   1}}>{{fa-icon "smile-o"}}</button>
-<button class="btn btn-warning" data-toggle="tooltip" title="½ K.O." {{bind-attr disabled=finish}} {{action "ko" 0.5}}>{{fa-icon   "meh-o"}}</button>
-<button class="btn btn-danger"  data-toggle="tooltip" title="0 K.O." {{bind-attr disabled=finish}} {{action "ko"   0}}>{{fa-icon "frown-o"}}</button>
+<button class="btn btn-success" data-toggle="tooltip" title="1 K.O." {{bind-attr disabled=failedOrFinished}} {{action "ko"   1}}>{{fa-icon "smile-o"}}</button>
+<button class="btn btn-warning" data-toggle="tooltip" title="½ K.O." {{bind-attr disabled=failedOrFinished}} {{action "ko" 0.5}}>{{fa-icon   "meh-o"}}</button>
+<button class="btn btn-danger"  data-toggle="tooltip" title="0 K.O." {{bind-attr disabled=failedOrFinished}} {{action "ko"   0}}>{{fa-icon "frown-o"}}</button>
 
 <button
   class="btn btn-fail"
   data-toggle="tooltip"
   title="Durchfall"
-  {{bind-attr disabled=failed}}
+  {{bind-attr disabled=failedOrFinished}}
   {{action "ko" -1}}>
 
   <i class="icon-skull"></i>

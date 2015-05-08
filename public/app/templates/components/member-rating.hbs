@@ -1,6 +1,14 @@
-{{#if editing}}
-  {{fa-icon "pencil"}}
-  {{input type="number" value=rating.ko min=0 max=1 step=0.5}}
+{{#if rating.failed}}
+
+  <i class="icon-skull fa-2x"></i>
+
 {{else}}
-  {{rating.ko}}
+
+  {{#if editing}}
+    {{fa-icon "pencil"}}
+    {{input type="number" value=rating.ko min=0 max=1 step=0.5}}
+  {{else}}
+    {{rating.ko}}
+  {{/if}}
+
 {{/if}}

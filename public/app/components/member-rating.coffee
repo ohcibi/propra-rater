@@ -1,6 +1,8 @@
 `import Ember from 'ember'`
 `import Notify from 'ember-notify'`
 
+computed = Ember.computed
+
 MemberRatingComponent = Ember.Component.extend
   classNames: ["member-rating"]
 

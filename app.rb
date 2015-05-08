@@ -129,30 +129,43 @@ get "/statistics" do
 
       otherkos = member_ratings.select do |r|
         r["milestone"] < rating["milestone"]
-      end.map { |r| r["ko"] }.reduce(:+)
+      end.map { |r| r["ko"] }
 
-      { milestone: rating["milestone"], kosum: rating["ko"] + (otherkos or 0) }
+      kosum = otherkos.select { |r| r >= 0 }.reduce(:+).to_i
+
+      kosum += rating["ko"] unless rating["ko"] < 0
+
+      {
+        milestone: rating["milestone"],
+        kosum: kosum,
+        failed: ([rating["ko"]] + otherkos).include?(-1)
+      }
     end
   end
 
   good = [0]*12
   let4 = [0]*12
   get5 = [0]*12
+  fa1l = (1..12).map do |ms|
+    Rating.where("milestone <= ?", ms).where(ko: -1).count
+  end
 
   kosums.each do |sums|
     sums.each do |sum|
-      if (sum[:milestone] - sum[:kosum]) < 2
-        good[sum[:milestone] - 1] += 1
-      elsif (sum[:milestone] - sum[:kosum]) < 4
-        let4[sum[:milestone] - 1] += 1
-      else
-        get5[sum[:milestone] - 1] += 1
+      unless sum[:failed]
+        if (sum[:milestone] - sum[:kosum]) < 2
+          good[sum[:milestone] - 1] += 1
+        elsif (sum[:milestone] - sum[:kosum]) < 4
+          let4[sum[:milestone] - 1] += 1
+        else
+          get5[sum[:milestone] - 1] += 1
+        end
       end
     end
   end
 
   json({
-    active: {good: good, let4: let4, get5: get5 },
+    active: {good: good, let4: let4, get5: get5, fail: fa1l },
     ratings: Rating.all
   })
 end
