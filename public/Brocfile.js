@@ -15,6 +15,7 @@ var app = new EmberApp({
 app.import("bower_components/bootstrap/dist/css/bootstrap.css");
 app.import("bower_components/bootstrap/dist/css/bootstrap-theme.css");
 app.import("bower_components/bootstrap/js/tooltip.js");
+app.import("bower_components/bootstrap/js/collapse.js");
 
 app.import("bower_components/Chart.js/Chart.js");
 

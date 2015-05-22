@@ -1,0 +1,22 @@
+<div class="container">
+
+  <div class="navbar-header">
+    <button class="navbar-toggle collapsed" data-target=".navbar-collapse" data-toggle="collapse">{{fa-icon "bars"}}</button>
+
+    {{link-to "ProPra Rater" "teams" classNames="navbar-brand"}}
+  </div>
+
+  <div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+      <li>{{#link-to "teams"}}{{fa-icon "users"}} Teams{{/link-to}}</li>
+      <li>{{#link-to "statistics"}}{{fa-icon "bar-chart"}} Statistiken{{/link-to}}</li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right navbar-logout">
+      <li>
+        <button {{action "logout"}} type="button" class="btn btn-primary navbar-btn">{{fa-icon "sign-out"}} Abmelden</button>
+      </li>
+    </ul>
+  </div>
+
+</div>
