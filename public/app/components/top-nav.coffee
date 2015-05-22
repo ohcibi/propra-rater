@@ -1,6 +1,9 @@
 `import Ember from 'ember'`
 
 TopNavComponent = Ember.Component.extend
+  actions:
+    logout: -> @sendAction "logout"
+
   tagName: "nav"
 
   classNames: [
