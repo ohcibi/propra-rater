@@ -1,47 +1,49 @@
-<header class="page-header">
-  <h1>Statistiken</h1>
-</header>
+<div class="container main-container">
+  <header class="page-header">
+    <h1>Statistiken</h1>
+  </header>
 
-<h2>K.O.s pro Meilenstein</h2>
-{{bar-chart data=barChartData}}
+  <h2>K.O.s pro Meilenstein</h2>
+  {{bar-chart data=barChartData}}
 
-<h2>Durchfallquote</h2>
-{{line-chart data=lineChartData}}
+  <h2>Durchfallquote</h2>
+  {{line-chart data=lineChartData}}
 
-<h2>Daten</h2>
+  <h2>Daten</h2>
 
-<div class="row">
-  <div class="col-md-12">
-    <table class="table table-bordered table-hover table-striped statistics">
-      <thead>
-        <tr>
-          <th>Meilenstein</th>
-          <th>1 K.O.</th>
-          <th>½ K.O.</th>
-          <th>0 K.O.</th>
-          <th>Durchfall</th>
-          <th>&lt; 2</th>
-          <th>&lt; 4</th>
-          <th>&gt;= 4</th>
-          <th>Durchfall</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        {{#each tableData as |milestone|}}
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered table-hover table-striped statistics">
+        <thead>
           <tr>
-            <td class="milestone-col">{{milestone.number}}</td>
-            <td>{{milestone.full}}</td>
-            <td>{{milestone.half}}</td>
-            <td>{{milestone.none}}</td>
-            <td>{{milestone.diarrhea}}</td>
-            <td>{{milestone.good}}</td>
-            <td>{{milestone.let4}}</td>
-            <td>{{milestone.get5}}</td>
-            <td>{{milestone.fail}}</td>
+            <th>Meilenstein</th>
+            <th>1 K.O.</th>
+            <th>½ K.O.</th>
+            <th>0 K.O.</th>
+            <th>Durchfall</th>
+            <th>&lt; 2</th>
+            <th>&lt; 4</th>
+            <th>&gt;= 4</th>
+            <th>Durchfall</th>
           </tr>
-        {{/each}}
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          {{#each tableData as |milestone|}}
+            <tr>
+              <td class="milestone-col">{{milestone.number}}</td>
+              <td>{{milestone.full}}</td>
+              <td>{{milestone.half}}</td>
+              <td>{{milestone.none}}</td>
+              <td>{{milestone.diarrhea}}</td>
+              <td>{{milestone.good}}</td>
+              <td>{{milestone.let4}}</td>
+              <td>{{milestone.get5}}</td>
+              <td>{{milestone.fail}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
