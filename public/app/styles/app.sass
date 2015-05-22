@@ -55,22 +55,41 @@
 
 .team-select
 
+  position: relative
+
   @media (min-width: 768px)
-    margin-left: 15px
+    padding-left: 30px
+    padding-right: 30px
 
   .input-group, .dropdown-menu
     width: 100%
 
     @media (min-width: 768px)
-      width: 300px
+      width: 330px
+
+    @media (min-width: 992px)
+      width: 283px
+
+    @media (min-width: 1200px)
+      width: 350px
 
   .dropdown-menu
     display: block
-    position: relative
+    width: auto
+    position: absolute
+    left: 15px
+    right: 15px
 
     @media (min-width: 768px)
-      position: absolute
-      left: auto
+      left: 30px
+      right: auto
+      width: 330px
+
+    @media (min-width: 992px)
+      width: 283px
+
+    @media (min-width: 1200px)
+      width: 350px
 
   .results
 
