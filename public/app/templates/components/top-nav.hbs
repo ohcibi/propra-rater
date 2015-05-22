@@ -12,10 +12,8 @@
       <li>{{#link-to "statistics"}}{{fa-icon "bar-chart"}} Statistiken{{/link-to}}</li>
     </ul>
 
-    <ul class="nav navbar-nav navbar-right navbar-logout">
-      <li>
-        <button {{action "logout"}} type="button" class="btn btn-primary navbar-btn">{{fa-icon "sign-out"}} Abmelden</button>
-      </li>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a {{action "logout"}}>{{fa-icon "sign-out"}} Abmelden</a></li>
     </ul>
   </div>
 
