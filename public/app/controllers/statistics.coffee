@@ -11,7 +11,6 @@ StatisticsController = Ember.Controller.extend
     @get("model.ratings").forEach (rating) ->
       milestone = get rating, "milestone"
       msRatings = data[milestone] ?=
-        number: milestone
         full: 0
         none: 0
         half: 0
@@ -31,5 +30,19 @@ StatisticsController = Ember.Controller.extend
   ).property "model.ratings.@each.ko", "model.ratings.@each.milestone"
 
   lineChartData: computed.reads "model.active"
+
+  tableData: (->
+    lineChartData = @get "lineChartData"
+    @get("barChartData").map (ms, idx) ->
+      number: idx + 1
+      full: get ms, "full"
+      half: get ms, "half"
+      none: get ms, "none"
+      diarrhea: get ms, "diarrhea"
+      good: get(lineChartData, "good")[idx]
+      let4: get(lineChartData, "let4")[idx]
+      get5: get(lineChartData, "get5")[idx]
+      fail: get(lineChartData, "fail")[idx]
+  ).property "barChartData", "lineChartData"
 
 `export default StatisticsController`
