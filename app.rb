@@ -88,50 +88,9 @@ delete "/ratings/:id" do
   json rating: rating
 end
 
-post "/sessions" do
-  body = request.body.read
-  payload = JSON.parse body
-  session = payload["session"]
-
-  begin
-    if authenticate? session["ident"], session["password"]
-      json session: { token: authenticate!(session["ident"]) }
-    else
-      error401 message: "Fehler bei der Anmeldung"
-    end
-  rescue UserNotFoundException
-    error401(
-      message: "Fehler bei der Anmeldung",
-      errors: {
-        ident: "Der Benutzer '#{session["ident"]}' existiert nicht."
-      }
-    )
-  rescue UserNoPropraTutorException
-    error401(
-      message: "Fehler bei der Anmeldung",
-      errors: {
-        ident: "Der Benutzer '#{session["ident"]}' ist kein ProPra Tutor."
-      }
-    )
-  rescue WrongPasswordException
-    error401(
-      message: "Fehler bei der Anmeldung",
-      errors: {
-        password: "Das Passwort ist falsch."
-      }
-    )
-  end
-end
-
-delete "/sessions" do
-  body = request.body.read
-  payload = JSON.parse body
-  session = payload["session"]
-  user = User.find_by token: session["token"]
-  user.update! token_expires_at: DateTime.now
-end
-
 get "/statistics" do
+  protect!
+
   ratings = Rating.
     select(:id, :milestone, :member, :ko).
     group(:member).group(:milestone).
@@ -182,6 +141,49 @@ get "/statistics" do
     active: {good: good, let4: let4, get5: get5, fail: fa1l },
     ratings: Rating.all
   })
+end
+
+post "/sessions" do
+  body = request.body.read
+  payload = JSON.parse body
+  session = payload["session"]
+
+  begin
+    if authenticate? session["ident"], session["password"]
+      json session: { token: authenticate!(session["ident"]) }
+    else
+      error401 message: "Fehler bei der Anmeldung"
+    end
+  rescue UserNotFoundException
+    error401(
+      message: "Fehler bei der Anmeldung",
+      errors: {
+        ident: "Der Benutzer '#{session["ident"]}' existiert nicht."
+      }
+    )
+  rescue UserNoPropraTutorException
+    error401(
+      message: "Fehler bei der Anmeldung",
+      errors: {
+        ident: "Der Benutzer '#{session["ident"]}' ist kein ProPra Tutor."
+      }
+    )
+  rescue WrongPasswordException
+    error401(
+      message: "Fehler bei der Anmeldung",
+      errors: {
+        password: "Das Passwort ist falsch."
+      }
+    )
+  end
+end
+
+delete "/sessions" do
+  body = request.body.read
+  payload = JSON.parse body
+  session = payload["session"]
+  user = User.find_by token: session["token"]
+  user.update! token_expires_at: DateTime.now
 end
 
 get "/*" do
