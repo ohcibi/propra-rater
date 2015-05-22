@@ -16,6 +16,14 @@ BarChartComponent = Ember.Component.extend
     labels: [1..12].map (ms) -> "Meilenstein #{ms}"
     datasets: [
         {
+            label: "Durchfall",
+            fillColor: "rgba(0, 0, 0, 0.5)",
+            strokeColor: "rgba(0, 0, 0, 0.8)",
+            highlightFill: "rgba(30, 30, 30, 0.75)",
+            highlightStroke: "rgba(30, 30, 30, 1)",
+            data: @get "diarrhea"
+        }
+        {
             label: "0 K.O.",
             fillColor: "rgba(217, 83, 79, 0.5)",
             strokeColor: "rgba(217, 83, 79, 0.8)",
@@ -47,6 +55,8 @@ BarChartComponent = Ember.Component.extend
   half: computed.mapBy "data", "half"
 
   full: computed.mapBy "data", "full"
+
+  diarrhea: computed.mapBy "data", "diarrhea"
 
   data: []
 
