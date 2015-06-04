@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "version": "0.7.0-dev",
+  "version": "0.7.0",
   "description": "Small description for frontend goes here",
   "private": true,
   "directories": {
