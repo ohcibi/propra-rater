@@ -3,14 +3,17 @@
 
 computed = Ember.computed
 
+playSound = (num) ->
+  playAudio switch num
+    when 1 then "korrekt-oida.ogg"
+    when 0.5 then "slap.ogg"
+    when 0 then "zonk.ogg"
+    when -1 then "fail.ogg"
+
 MemberRaterComponent = Ember.Component.extend
   actions:
     ko: (num) ->
-      if num == 1
-        playAudio "korrekt-oida.ogg"
-      else if num == -1
-        playAudio "fail.ogg"
-
+      playSound num
       @sendAction "action", num, @get("member.id"), @get "milestone"
 
     revoke: -> @sendAction "onRevoke", @get "member.id"
