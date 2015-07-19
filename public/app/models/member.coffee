@@ -43,13 +43,20 @@ Member = DS.Model.extend
       "failed"
     else
       level = @get("currentMilestone") - @get "koSum"
-      if level < 2
+      pretest = @get("pretest.ko") ? 0
+      if level <= 2
         "success"
-      else if level < 4
-        "warning"
+      else if level <= 4
+        if level - pretest > 2
+          "warning"
+        else
+          "semi-success"
       else
-        "danger"
-  ).property "currentMilestone", "koSum", "failed"
+        if level - pretest > 4
+          "danger"
+        else
+          "semi-warning"
+  ).property "currentMilestone", "koSum", "failed", "pretest.ko"
 
   unfailedKos: (->
     @get("kos").filter (ko) -> ko in [0, .5, 1]
