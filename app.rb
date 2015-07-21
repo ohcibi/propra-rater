@@ -37,6 +37,19 @@ get "/teams" do
   end
 end
 
+get "/members" do
+  #protect!
+
+  members = []
+  git.teams.each do |team|
+    members = members + git.get_members_for(team["path"])
+  end
+
+  members.sort_by! { |member| member["name"] }
+
+  gzip json members: members, ratings: Rating.all
+end
+
 get "/ratings" do
   protect!
 
