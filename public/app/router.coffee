@@ -14,4 +14,6 @@ Router.map ->
 
   @resource "statistics", path: "/statistiken"
 
+  @resource "members", path: "/ergebnisse"
+
 `export default Router`

@@ -1,0 +1,42 @@
+{{top-nav logout="logout"}}
+
+<div class="container main-container">
+  <div class="row">
+    <header class="col-md-12">
+      <h2>Leistungsübersicht</h2>
+    </header>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="members table table-hover table-bordered">
+        <thead>
+          <tr>
+            <th class="user-col">Name</th>
+            <th class="ko-col">K.O.</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {{#each model as |member|}}
+            <tr class="bg-{{member.sanity}} text-{{member.sanity}}">
+              <td class="user-col">
+                <strong>{{member.name}}</strong>
+              </td>
+              <td class="ko-col">
+                {{#if member.failed}}
+                  <i class="icon-skull fa-2x"></i>
+                {{else}}
+                  {{member.koSum}}/{{member.currentMilestone}}
+                  {{#if member.hasPretest}}
+                    + {{member.pretest.ko}}
+                  {{/if}}
+                {{/if}}
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
