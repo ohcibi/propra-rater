@@ -47,7 +47,7 @@ get "/members" do
 
   members.sort_by! { |member| member["name"] }
 
-  gzip json members: members, ratings: Rating.all
+  gzip json members: members, ratings: Rating.all, pretests: Pretest.all
 end
 
 get "/ratings" do

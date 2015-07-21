@@ -1,6 +1,21 @@
 html, body, body > .ember-view
   height: 100%
 
+.bg-semi-warning, &.text-semi-warning, &.bg-semi-success, &.text-semi-success
+ transition: all 300ms ease-in-out
+
+.bg-semi-warning
+ background-color: #ffd699
+
+.text-semi-warning
+ color: #8a6d3b
+
+.bg-semi-success
+ background-color: #f0ff99
+
+.text-semi-success
+  color: #3c763d
+
 [data-ember-action]
   cursor: pointer
 
@@ -27,21 +42,6 @@ html, body, body > .ember-view
     font-weight: 500
     user-select: none
     cursor: default
-
-    &.bg-semi-warning, &.text-semi-warning, &.bg-semi-success, &.text-semi-success
-      transition: all 300ms ease-in-out
-
-    &.bg-semi-warning
-      background-color: #ffd699
-
-    &.text-semi-warning
-      color: #8a6d3b
-
-    &.bg-semi-success
-      background-color: #f0ff99
-
-    &.text-semi-success
-      color: #3c763d
 
   .rater-col
     text-align: right
