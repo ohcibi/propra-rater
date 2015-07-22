@@ -38,7 +38,7 @@ get "/teams" do
 end
 
 get "/members" do
-  #protect!
+  protect!
 
   members = []
   git.teams.each do |team|
