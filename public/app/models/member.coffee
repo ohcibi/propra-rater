@@ -18,6 +18,8 @@ Member = DS.Model.extend
 
   pretest: belongsTo "pretest"
 
+  team: belongsTo "team"
+
   currentMilestone: (->
     milestones = @get("ratings").map (r) -> get r, "milestone"
     Math.max 0, Math.max.apply null, milestones

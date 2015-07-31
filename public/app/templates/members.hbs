@@ -21,7 +21,7 @@
           {{#each model as |member|}}
             <tr class="bg-{{member.sanity}} text-{{member.sanity}}">
               <td class="user-col">
-                <strong>{{member.name}}</strong>
+                <strong>{{member.name}}</strong> ({{member.team.name}})
               </td>
               <td class="ko-col">
                 {{#if member.failed}}

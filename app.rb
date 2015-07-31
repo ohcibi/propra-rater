@@ -41,13 +41,17 @@ get "/members" do
   protect!
 
   members = []
-  git.teams.each do |team|
+  teams = git.teams
+  teams.each do |team|
     members = members + git.get_members_for(team["path"])
   end
 
-  members.sort_by! { |member| member["name"] }
+  members.sort_by! do |member|
+    team = teams.find { |team| team["id"] == member["team"] }
+    team["name"]
+  end
 
-  gzip json members: members, ratings: Rating.all, pretests: Pretest.all
+  gzip json members: members, ratings: Rating.all, pretests: Pretest.all, teams: teams
 end
 
 get "/ratings" do

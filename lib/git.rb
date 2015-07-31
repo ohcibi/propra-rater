@@ -26,6 +26,7 @@ class Git
     @git.team_members(team["id"]).map do |member|
       member = member.to_h
       member["ratings"] = Rating.where(member: member["id"]).pluck :id
+      member["team"] = team["id"]
 
       pretest = Pretest.find_by member: member["id"]
 
