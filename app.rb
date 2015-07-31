@@ -48,7 +48,7 @@ get "/members" do
 
   members.sort_by! do |member|
     team = teams.find { |team| team["id"] == member["team"] }
-    team["name"]
+    Integer(team["name"].gsub("team", ""))
   end
 
   gzip json members: members, ratings: Rating.all, pretests: Pretest.all, teams: teams
